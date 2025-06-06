@@ -1,0 +1,865 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOREM - Consultora Contable de Asesoramiento Tributario Empresarial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--secondary-color);
+        }
+        
+        .logo-text p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 20px 100px;
+            margin-top: 80px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 2.5rem;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .service-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .service-content ul {
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .service-card.active .service-content ul {
+            max-height: 1000px;
+            margin-top: 15px;
+        }
+        
+        .service-content ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-color);
+        }
+        
+        .service-content ul li::before {
+            content: '•';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .toggle-services {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-services:hover {
+            background-color: #1a252f;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .contact-details a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-details a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .contact-form {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+            color: #bdc3c7;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero {
+                padding: 150px 20px 80px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-b278-61f7-ab91-ca6b20c1d201/raw?se=2025-06-06T19%3A21%3A35Z&sp=r&sv=2024-08-04&sr=b&scid=07d0dbb3-92d5-553e-9133-488777670b6b&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-06T02%3A01%3A42Z&ske=2025-06-07T02%3A01%3A42Z&sks=b&skv=2024-08-04&sig=PqX1QK2CdgHL23wMgTIoz%2BwmzP4gJHpC8zkGuczPdmw%3D" alt="FOREM Logo">
+                <div class="logo-text">
+                    <h1>Consultora <span>FOREM</span></h1>
+                    <p>Asesoramiento Tributario Empresarial</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h2>Soluciones Contables y Tributarias para tu Empresa</h2>
+            <p>En FOREM brindamos asesoramiento profesional para optimizar tus procesos contables, cumplir con tus obligaciones fiscales y tomar las mejores decisiones financieras.</p>
+            <a href="#servicios" class="btn">Nuestros Servicios</a>
+            <a href="#contacto" class="btn btn-outline">Contáctanos</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card" id="service1">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Servicios Contables</h3>
+                        <p>Gestión profesional de todos los aspectos contables de su empresa.</p>
+                        <button class="toggle-services" onclick="toggleService('service1')">Ver detalles</button>
+                        <ul>
+                            <li>Apertura de NIT: asesoría para la actividad que vaya a desarrollar.</li>
+                            <li>Declaración de impuestos mensuales, trimestrales, anuales, entre otros.</li>
+                            <li>Elaboración de Estados Financieros: Balance General, Estado de Resultados, Estado de Flujo de Efectivo, Evolución del Patrimonio, Notas a los Estados Financieros.</li>
+                            <li>Dictamenes de Auditoría</li>
+                            <li>Asesoramiento Tributario</li>
+                            <li>Regularización de Procesos de Fiscalización</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card" id="service2">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Atención Laboral y Social</h3>
+                        <p>Gestión integral de todos los aspectos laborales de su organización.</p>
+                        <button class="toggle-services" onclick="toggleService('service2')">Ver detalles</button>
+                        <ul>
+                            <li>Elaboración de Planillas y Boletas de Pago</li>
+                            <li>Cálculo mensual de salarios, beneficios sociales, liquidaciones, desahucios, etc.</li>
+                            <li>Gestión con Instituciones Laborales: Inscripción y trámites ante la Caja Nacional de Salud (CNS), Gestora Publica, Ministerio de Trabajo, entre otros.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card" id="service3">
+                    <div class="service-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Servicios Legales y Empresariales</h3>
+                        <p>Asesoría legal para la constitución y formalización de su empresa.</p>
+                        <button class="toggle-services" onclick="toggleService('service3')">Ver detalles</button>
+                        <ul>
+                            <li>Constitución y Formalización de Empresas: Tramitación de licencias de funcionamiento y registros ambientales, inscripción y registro en SEPREC, SENASAG, etc.</li>
+                            <li>Actualización de Matrícula de Comercio</li>
+                            <li>Elaboración de Contratos y Reglamentos: Redacción de contratos laborales, comerciales, de arrendamiento, entre otros, conforme a leyes y estatutos vigentes en Bolivia.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card" id="service4">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Servicios Financieros y de Gestión</h3>
+                        <p>Análisis y asesoría para la toma de decisiones financieras estratégicas.</p>
+                        <button class="toggle-services" onclick="toggleService('service4')">Ver detalles</button>
+                        <ul>
+                            <li>Análisis Financiero: Evaluación del desempeño económico de la empresa.</li>
+                            <li>Control de Costos y Presupuestos: Diseño de estructuras de costos, control del presupuesto mensual y propuesta de medidas de ahorro o eficiencia.</li>
+                            <li>Asesoría de Financiamiento para su Empresa: Preparación de documentación contable y financiera para acceder a créditos bancarios, fondos de inversión u otros financiamientos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Consultora FOREM</h2>
+                    <p>Somos una consultora especializada en asesoramiento contable, tributario y empresarial, comprometida con el éxito de nuestros clientes a través de soluciones personalizadas y profesionales de alta calidad.</p>
+                    <p>Nuestro equipo está conformado por profesionales altamente capacitados y con amplia experiencia en el sector, lo que nos permite ofrecer un servicio integral que cubre todas las necesidades contables, fiscales y legales de su empresa.</p>
+                    <p>En FOREM nos destacamos por nuestra ética profesional, confiabilidad y compromiso con la excelencia en el servicio a nuestros clientes.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Equipo FOREM">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contáctanos</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Correo Electrónico</h4>
+                            <a href="mailto:atc455477@gmail.com">atc455477@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Teléfonos</h4>
+                            <a href="tel:+59171798771">+591 71798771</a><br>
+                            <a href="tel:+59175965657">+591 75965657</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/59171798771" target="_blank">+591 71798771</a><br>
+                            <a href="https://wa.me/59175965657" target="_blank">+591 75965657</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horario de Atención</h4>
+                            <p>Lunes a Viernes: 8:30 - 18:30</p>
+                            <p>Sábados: 9:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Consultora FOREM</h3>
+                    <p>Expertos en asesoramiento contable, tributario y empresarial en Bolivia. Brindamos soluciones integrales para el éxito de su negocio.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#servicios">Servicios Contables</a></li>
+                        <li><a href="#servicios">Atención Laboral</a></li>
+                        <li><a href="#servicios">Servicios Legales</a></li>
+                        <li><a href="#servicios">Asesoría Financiera</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> atc455477@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +591 71798771</p>
+                    <p><i class="fas fa-phone"></i> +591 75965657</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Consultora Contable FOREM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        // Toggle Services Details
+        function toggleService(serviceId) {
+            const serviceCard = document.getElementById(serviceId);
+            serviceCard.classList.toggle('active');
+            
+            const button = serviceCard.querySelector('.toggle-services');
+            button.textContent = serviceCard.classList.contains('active') ? 
+                'Ocultar detalles' : 'Ver detalles';
+        }
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would typically send the form data to a server
+                // For this example, we'll just show an alert
+                alert('Gracias por su mensaje. Nos pondremos en contacto con usted pronto.');
+                this.reset();
+            });
+        }
+        
+        // Sticky Header on Scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
